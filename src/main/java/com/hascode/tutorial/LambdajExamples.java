@@ -2,6 +2,8 @@ package com.hascode.tutorial;
 
 import static ch.lambdaj.Lambda.forEach;
 import static ch.lambdaj.Lambda.joinFrom;
+import static ch.lambdaj.Lambda.max;
+import static ch.lambdaj.Lambda.maxFrom;
 import static ch.lambdaj.Lambda.on;
 import static ch.lambdaj.Lambda.sort;
 import static java.util.Arrays.asList;
@@ -35,5 +37,16 @@ public class LambdajExamples {
 		// create a comma separated list of titles from the books collection
 		String titles = joinFrom(books).getTitle();
 		System.out.println(titles); // "Some book, Another book, I luv codin"
+
+		// select the most expensive book's price
+		books.get(1).setPrice(12.50f);
+		books.get(2).setPrice(33.20f);
+
+		float maxPrice = maxFrom(books).getPrice();
+		System.out.println(maxPrice); // output: "33.2"
+
+		// or another way
+		float maxPrice2 = max(books, on(Book.class).getPrice());
+		System.out.println(maxPrice2); // output: "33.2"
 	}
 }
