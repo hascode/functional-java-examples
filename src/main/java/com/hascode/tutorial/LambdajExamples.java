@@ -1,12 +1,15 @@
 package com.hascode.tutorial;
 
 import static ch.lambdaj.Lambda.forEach;
+import static ch.lambdaj.Lambda.having;
 import static ch.lambdaj.Lambda.joinFrom;
 import static ch.lambdaj.Lambda.max;
 import static ch.lambdaj.Lambda.maxFrom;
 import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.select;
 import static ch.lambdaj.Lambda.sort;
 import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.util.Date;
 import java.util.List;
@@ -48,5 +51,11 @@ public class LambdajExamples {
 		// or another way
 		float maxPrice2 = max(books, on(Book.class).getPrice());
 		System.out.println(maxPrice2); // output: "33.2"
+
+		// find books with title=Some book
+		List<Book> booksWithSpecifiedTitle = select(books,
+				having(on(Book.class).getTitle(), equalTo("Some book")));
+		System.out.println(booksWithSpecifiedTitle.size()); // output:1
+		System.out.println(booksWithSpecifiedTitle.get(0).getPrice()); // "output: 10.0"
 	}
 }
