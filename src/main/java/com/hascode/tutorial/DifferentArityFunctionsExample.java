@@ -14,6 +14,9 @@ public class DifferentArityFunctionsExample {
 			}
 		};
 
+		// output: "barx bazx"
+		array("foo", "barx", "moo", "bazx").filter(endsWithX).foreach(output);
+
 		F2<String, String, Boolean> stringsEqual = new F2<String, String, Boolean>() {
 			@Override
 			public Boolean f(final String a, final String b) {
@@ -21,8 +24,6 @@ public class DifferentArityFunctionsExample {
 			}
 
 		};
-		// output: "barx bazx"
-		array("foo", "barx", "moo", "bazx").filter(endsWithX).foreach(output);
 	}
 
 	static Effect<String> output = new Effect<String>() {
